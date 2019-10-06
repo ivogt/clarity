@@ -12,9 +12,8 @@ export class RepoDetailsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
-var DATA = {
+const DATA = {
   detailsHTML: '<p><img src="logo.png" alt="Clarity"></p>\n' +
     '<h1 id="clarity-design-system">Clarity Design System</h1>\n' +
     '<p><a href="https://travis-ci.com/vmware/clarity"><img src="https://travis-ci.com/vmware/clarity.svg?branch=master" alt="Build Status"></a></p>\n' +

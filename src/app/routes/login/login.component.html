@@ -1,0 +1,40 @@
+<div class="login-wrapper">
+  <form class="login" [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value)" >
+    <section class="title">
+      <h3 class="welcome">Welcome to</h3>
+      Github Dashboard
+    </section>
+    <div class="login-group">
+      <div class="error active" *ngFor="let msg of msgs">
+        {{msg}}
+      </div>
+
+      <clr-input-container>
+        <label class="clr-sr-only">Username</label>
+        <input
+          type="text"
+          name="username"
+          value=""
+          clrInput
+          placeholder="Username"
+          formControlName="username"
+
+        />
+      </clr-input-container>
+      <clr-password-container>
+        <label class="clr-sr-only">Password</label>
+        <input
+          type="password"
+          name="password"
+          clrPassword
+          placeholder="Password"
+          formControlName="password"
+        />
+      </clr-password-container>
+      <div class="error active" *ngFor="let error of errors">
+        {{error}}
+      </div>
+      <button type="submit" class="btn btn-primary">NEXT</button>
+    </div>
+  </form>
+</div>
