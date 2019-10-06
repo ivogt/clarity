@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   authenticate({ username , password }): Observable<boolean> {
-    /* TODO: add encryption(sha/md5 and salt ) before ending to server */
+    /* TODO: add encryption(sha/md5 and salt ) before sending to server */
     return this.http.get("/authenticate").pipe(
       flatMap((data: User) => {
         this.authenticated = data.isAuthenticated;
