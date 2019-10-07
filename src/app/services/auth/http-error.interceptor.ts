@@ -32,12 +32,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           this.router.navigate(["login",{msg:"Login required!"}], {
             skipLocationChange: true,
           });
-        }else{
-          this.router.navigate(["error-remote",error], {
-            skipLocationChange: true,
-          });
         }
-        return throwError(error.message);
+        return throwError(error);
       })
     );
   }

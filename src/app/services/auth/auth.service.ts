@@ -3,7 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { delay, flatMap } from "rxjs/operators";
 import { User } from "../../models/user.model";
-
+const base = "http://localhost:3000";
+const Resolve = href => `${base}${href}`;
 @Injectable({
   providedIn: "root"
 })
@@ -16,13 +17,14 @@ export class AuthService {
   invalidateSession() {
     this.authenticated = false;
   }
-  isAuthenticated(): boolean|Observable<boolean> {
+  isAuthenticated(): boolean | Observable<boolean> {
     if (this.authenticated) {
       return of(this.authenticated);
     }
-    return this.http.get("/authenticated").pipe(
+    return this.http.get(Resolve("/api/user/authenticated")).pipe(
       flatMap((data: User) => {
         this.authenticated = data.isAuthenticated;
+        this.user = data.user;
         return of(data);
       }),
       flatMap((data: User) => of(data.isAuthenticated))
@@ -33,15 +35,16 @@ export class AuthService {
     this.authenticated = false;
   }
 
-  authenticate({ username , password }): Observable<boolean> {
-    /* TODO: add encryption(sha/md5 and salt ) before sending to server */
-    return this.http.get("/authenticate").pipe(
-      flatMap((data: User) => {
-        this.authenticated = data.isAuthenticated;
-        this.user = data;
-        return of(data);
-      }),
-      flatMap((data: User) => of(data.isAuthenticated))
-    );
+  authenticate({ email, password }): Observable<boolean> {
+    return this.http
+      .post(Resolve("/api/user/authenticate"), { email, password })
+      .pipe(
+        flatMap((data: User) => {
+          this.authenticated = data.isAuthenticated;
+          this.user = data;
+          return of(data);
+        }),
+        flatMap((data: User) => of(data))
+      );
   }
 }

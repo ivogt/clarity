@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ["", Validators.required],
-      password: ["", Validators.required]
+      email: ["guest@guest.com", Validators.required],
+      password: ["password", Validators.required]
     });
     this.msgs = [this.activatedRoute.snapshot.params.msg];
   }
@@ -32,12 +32,23 @@ export class LoginComponent implements OnInit {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       console.log("LoginForm is invalid!");
-      this.errors = ["Please fill username and password!"];
+      this.errors = ["Please fill email and password!"];
       return;
     }
-    const { username, password } = f;
-    this.authService
-      .authenticate({ username, password })
-      .subscribe(isAuthenticated => (isAuthenticated ?  this.router.navigate([""]) : ""));
+    const { email, password } = f;
+    this.authService.authenticate({ email, password }).subscribe(
+      user => this.router.navigate([""]),
+      ({ status, ...error }) => {
+        switch (status) {
+          case 400:
+            console.log(error);
+            const all = error.error.errors;
+            this.errors = [...all.map(x=>x.message)];
+            break;
+          default:
+            this.errors = ["Error with request!"];
+        }
+      }
+    );
   };
 }

@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 //Routes
 import { AppComponent } from "./app.component";
-import { NavComponent } from "./components/nav";
 import { ContainerComponent } from "./components/container";
 import { DashboardComponent } from "./routes/dashboard";
 import { RepoDetailsComponent } from "./routes/repo-details";
@@ -18,7 +17,7 @@ import { ErrorRemoteComponent } from "./routes/errorRemote";
 //Services
 import { GithubService } from "./services/github";
 import { AuthService } from "./services/auth";
-import { HttpErrorInterceptor } from "./services/auth";
+import { HttpErrorInterceptor , HttpInterceptor} from "./services/auth";
 import { AuthGuardService } from "./services/auth/auth-guard.service";
 
 @NgModule({
@@ -27,7 +26,6 @@ import { AuthGuardService } from "./services/auth/auth-guard.service";
     DashboardComponent,
     RepoDetailsComponent,
     LoginComponent,
-    NavComponent,
     ContainerComponent,
     ErrorRemoteComponent
   ],
@@ -44,6 +42,7 @@ import { AuthGuardService } from "./services/auth/auth-guard.service";
     AuthService,
     GithubService,
     AuthGuardService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
