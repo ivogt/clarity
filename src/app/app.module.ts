@@ -17,7 +17,7 @@ import { ErrorRemoteComponent } from "./routes/errorRemote";
 //Services
 import { GithubService } from "./services/github";
 import { AuthService } from "./services/auth";
-import { HttpErrorInterceptor , HttpInterceptor} from "./services/auth";
+import { HttpErrorInterceptor , IHttpInterceptor} from "./services/auth";
 import { AuthGuardService } from "./services/auth/auth-guard.service";
 
 @NgModule({
@@ -42,7 +42,7 @@ import { AuthGuardService } from "./services/auth/auth-guard.service";
     AuthService,
     GithubService,
     AuthGuardService,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: IHttpInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 module.exports = {
   USER_ROUTES: {
     AUTHENTICATED: '/api/user/authenticated',
+    LOGOUT: '/api/user/logout',
     AUTHENTICATE: '/api/user/authenticate',
     PINNED_REPOS: '/api/user/pinned-repos',
     PINNED_REPOS_README: '/api/user/pinned-repos/:repo/readme',

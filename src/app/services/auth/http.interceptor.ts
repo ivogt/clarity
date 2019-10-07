@@ -12,7 +12,7 @@ import { Injectable } from "@angular/core";
 @Injectable({
   providedIn: "root"
 })
-export class HttpInterceptor implements HttpInterceptor {
+export class IHttpInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(

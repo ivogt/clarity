@@ -17,34 +17,40 @@ export class AuthService {
   invalidateSession() {
     this.authenticated = false;
   }
+  getUser(): User {
+    return this.user;
+  }
   isAuthenticated(): boolean | Observable<boolean> {
     if (this.authenticated) {
       return of(this.authenticated);
     }
     return this.http.get(Resolve("/api/user/authenticated")).pipe(
       flatMap((data: User) => {
-        this.authenticated = data.isAuthenticated;
-        this.user = data.user;
-        return of(data);
-      }),
-      flatMap((data: User) => of(data.isAuthenticated))
+        this.authenticated = true;
+        this.user = data;
+        console.log(data)
+        return of(true);
+      })
     );
   }
-  logout() {
-    this.http.get("/logout").subscribe(() => console.log("User logged out!"));
-    this.authenticated = false;
-  }
 
-  authenticate({ email, password }): Observable<boolean> {
+  authenticate({ email, password }): Observable<User> {
     return this.http
       .post(Resolve("/api/user/authenticate"), { email, password })
       .pipe(
         flatMap((data: User) => {
-          this.authenticated = data.isAuthenticated;
+          this.authenticated = true;
           this.user = data;
           return of(data);
-        }),
-        flatMap((data: User) => of(data))
+        })
       );
+  }
+  logout(): Observable<any> {
+    return this.http.get(Resolve("/api/user/logout")).pipe(
+      flatMap((res) => {
+        this.authenticated = false;
+        return of(res);
+      })
+    );
   }
 }

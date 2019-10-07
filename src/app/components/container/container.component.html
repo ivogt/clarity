@@ -7,7 +7,14 @@
     </div>
 
     <div class="header-actions">
-      <span class="title">Ivo Todorov</span>
+      <a href="/" class="nav-link nav-icon-text">
+        <clr-icon shape="user"></clr-icon>
+        <span class="nav-text">{{user.givenName}} {{user.familyName}}</span>
+      </a>
+
+      <a (click)="logout($event)" href="javascript://" class="nav-link nav-text">
+        Log Out
+      </a>
     </div>
   </header>
 
