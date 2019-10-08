@@ -13,3 +13,4 @@ module.exports = details =>
     marked,
     clean
   )(details);
+  
