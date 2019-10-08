@@ -28,7 +28,7 @@ export class AuthService {
       flatMap((data: User) => {
         this.authenticated = true;
         this.user = data;
-        console.log(data)
+        //console.log(data)
         return of(true);
       })
     );

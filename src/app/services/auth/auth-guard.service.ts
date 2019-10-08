@@ -14,7 +14,7 @@ export class AuthGuardService implements CanActivate {
 
     if (auth instanceof Observable) {
       auth.subscribe(isAuthenticated => {
-        console.log("isAuthenticated", isAuthenticated);
+        //console.log("isAuthenticated", isAuthenticated);
         if (!isAuthenticated) {
           this.router.navigate(["login"]);
           return false;

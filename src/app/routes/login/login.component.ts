@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   submit = f => {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-      console.log("LoginForm is invalid!");
+      //console.log("LoginForm is invalid!");
       this.errors = ["Please fill email and password!"];
       return;
     }
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       ({ status, ...error }) => {
         switch (status) {
           case 400:
-            console.log(error);
+            //console.log(error);
             const all = error.error.errors;
             this.errors = [...all.map(x=>x.message)];
             break;

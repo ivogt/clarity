@@ -24,7 +24,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log(error);
+        //console.log(error);
 
         /* catch code 401 (Unauthenticated) and require login! */
         if (error.status === 401) {

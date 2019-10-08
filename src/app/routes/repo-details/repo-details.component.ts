@@ -23,7 +23,7 @@ export class RepoDetailsComponent implements OnInit {
     this.github
       .loadPinnedReposReadme(this.repoName)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.data = data;
       });
   }

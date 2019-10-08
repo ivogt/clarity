@@ -12,7 +12,7 @@ export class ErrorRemoteComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
   params;
   ngOnInit() {
-    console.log(this.route.snapshot);
+    //console.log(this.route.snapshot);
     this.params = this.route.snapshot.params;
   }
 }

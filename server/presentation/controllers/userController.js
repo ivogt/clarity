@@ -44,10 +44,10 @@ module.exports = ({ userService, githubService }) => ({
 
   pinned_repos_readme: async ctx => {
     const { repo } = ctx.params;
-    console.log(repo, ctx.params);
+    //console.log(repo, ctx.params);
     const details = await githubService.getDetails(repo);
 
-    console.log(details);
+    //console.log(details);
     ctx.body = { content: toDetailsViewModel(details) };
   },
 

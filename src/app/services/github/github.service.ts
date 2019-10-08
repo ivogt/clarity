@@ -18,7 +18,7 @@ export class GithubService {
   loadPinnedRepos(): Observable<Repo[]> {
     return this.http.get(Resolve("/api/user/pinned-repos")).pipe(
       flatMap((data: Repo[]) => {
-        console.log(data);
+        //console.log(data);
         this.pinnedRepos = data;
         return of(this.pinnedRepos);
       })
@@ -28,7 +28,7 @@ export class GithubService {
   loadPinnedReposReadme(repo): Observable<Readme> {
     return this.http.get(Resolve(`/api/user/pinned-repos/${repo}/readme`)).pipe(
       flatMap((data: Readme) => {
-        console.log(data);
+        //console.log(data);
         return of(data);
       })
     );
@@ -38,7 +38,7 @@ export class GithubService {
   loadPinnedReposCommits(repo): Observable<Readme> {
     return this.http.get(Resolve(`/api/user/pinned-repos/${repo}/commits`)).pipe(
       flatMap((data: Readme) => {
-        console.log(data);
+        //console.log(data);
         return of(data);
       })
     );
