@@ -2,19 +2,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ErrorRemoteComponent } from './errorRemote.component';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('ErrorRemoteComponent', () => {
+  let component: ErrorRemoteComponent;
+  let fixture: ComponentFixture<ErrorRemoteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      declarations: [ ErrorRemoteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(ErrorRemoteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
