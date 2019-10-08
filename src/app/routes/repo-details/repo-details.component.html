@@ -1,6 +1,6 @@
 <gd-container>
   <p>
-    vmware/clarity
+    vmware/{{repoName}}
     <button class="btn btn-sm" style="margin-left:20px;" routerLink="/">
       Back to pinned repos
     </button>
@@ -30,11 +30,13 @@
     </li>
   </ul>
   <section id="panel1" role="tabpanel" aria-labelledby="tab1">
+    <ng-template [ngIf]="data!==undefined">
     <div
       class="timeline-body"
-      [innerHTML]="data$.detailsHTML"
+      [innerHTML]="data.content"
       style="padding:30px;"
     ></div>
+    </ng-template>
   </section>
   <section
     id="panel2"

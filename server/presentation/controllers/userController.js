@@ -1,4 +1,8 @@
-const { toUserViewModel } = require("../utils");
+const {
+  toUserViewModel,
+  toReposViewModel,
+  toDetailsViewModel
+} = require("../utils");
 module.exports = ({ userService, githubService }) => ({
   authenticated: async (ctx, next) => {
     const { session } = ctx;
@@ -11,7 +15,6 @@ module.exports = ({ userService, githubService }) => ({
       return;
     }
     const user = await userService.getById(userId);
-    console.log(user);
     ctx.body = toUserViewModel(user);
     ctx.status = 200;
   },
@@ -34,11 +37,24 @@ module.exports = ({ userService, githubService }) => ({
     ctx.body = { isAuthenticated: false };
     ctx.status = 200;
   },
-  pinned_repos: () => {},
+  pinned_repos: async ctx => {
+    const repos = await githubService.getPinnedRepos();
+    ctx.body = toReposViewModel(repos);
+  },
 
-  pinned_repos_readme: () => {},
+  pinned_repos_readme: async ctx => {
+    const { repo } = ctx.params;
+    console.log(repo, ctx.params);
+    const details = await githubService.getDetails(repo);
 
-  pinned_repos_commits: () => {},
+    console.log(details);
+    ctx.body = { content: toDetailsViewModel(details) };
+  },
+
+  pinned_repos_commits: async () => {
+    const license = (await octo.repos("vmware", ["clarity"]).fetch()).license;
+    const commits = await octo.repos("vmware", ["clarity"]).commits.fetch();
+  },
 
   pinned_repos_download_patch: () => {}
 });

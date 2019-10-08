@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-import { delay, flatMap } from "rxjs/operators";
+import { flatMap } from "rxjs/operators";
 import { User } from "../../models/user.model";
 const base = "http://localhost:3000";
 const Resolve = href => `${base}${href}`;
