@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently 'ng serve' 'npm run server'",
+    "start": "node ./server/scripts/ADD_GUEST_USER && concurrently 'ng serve' 'npm run server'",
     "server": "node ./server/server",
     "build": "ng build",
     "test": "ng test",

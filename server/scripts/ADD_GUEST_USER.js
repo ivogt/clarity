@@ -31,6 +31,7 @@ const persistenceProvider = require("./../persistence/persistenceProvider");
 
     const [user] = await userService.getByEmail("guest@guest.com");
     container.logger.info("Use guest user [guest@guest.com : password] ");
+    process.exit(0)
   } catch (e) {
     container.logger.error(e.stack || e);
     process.exit(1);
