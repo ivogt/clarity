@@ -27,10 +27,14 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         console.log(error);
 
         /* catch code 401 (Unauthenticated) and require login! */
-        if(error.status==401){
+        if (error.status === 401) {
           this.authService.invalidateSession();
-          this.router.navigate(["login",{msg:"Login required!"}], {
-            skipLocationChange: true,
+          this.router.navigate(["login", { msg: "Login required!" }], {
+            skipLocationChange: true
+          });
+        } else if (error.status === 401) {
+          this.router.navigate(["error-remote", error], {
+            skipLocationChange: true
           });
         }
         return throwError(error);
