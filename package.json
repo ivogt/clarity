@@ -32,7 +32,7 @@
     "koa-body": "^4.1.1",
     "koa-router": "^7.4.0",
     "koa-session": "^5.12.3",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "mongoose": "^5.7.3",
     "octokat": "^0.10.0",
     "ramda": "^0.26.1",
